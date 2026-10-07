@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="fil"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ANHS Blockchain Voting - Pagpapatunay ng Token</title>
+<!-- Tailwind CSS CDN with forms and container queries plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration matching the ANHS Vote Dashboard palette -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb', // Primary button color from dashboard
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#0f172a',
+              navy: '#0b132b',
+              sidebar: '#0d172e' // Dark sidebar background from IMAGE_7
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace']
+          },
+          boxShadow: {
+            'card': '0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03)',
+            'card-hover': '0 12px 30px -4px rgba(37, 99, 235, 0.08), 0 4px 10px -2px rgba(15, 23, 42, 0.04)',
+            'input-focus': '0 0 0 4px rgba(37, 99, 235, 0.15)'
+          }
+        }
+      }
+    };
+  </script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Custom Styles: Background & Micro-patterns -->
+<style data-purpose="custom-background">
+    body {
+      background-color: #f8fafc;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(219, 234, 254, 0.45) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(224, 231, 255, 0.4) 0px, transparent 50%);
+      background-attachment: fixed;
+    }
+    
+    .tech-grid {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(148, 163, 184, 0.07) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+    }
+  </style>
+<!-- Custom Styles: Character Input Caret & Selection -->
+<style data-purpose="token-input-effects">
+    .token-input {
+      letter-spacing: 0.25em;
+    }
+    .token-input::placeholder {
+      letter-spacing: normal;
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col font-sans text-slate-800 antialiased tech-grid selection:bg-brand-500 selection:text-white">
+<!-- BEGIN: TopNavigationBar -->
+<header class="w-full bg-white/80 backdrop-blur-md border-b border-slate-200/80 sticky top-0 z-40" data-purpose="main-nav">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+<!-- Back Navigation & Branding -->
+<div class="flex items-center gap-6">
+<a class="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors py-1.5 px-3 rounded-lg hover:bg-slate-100" data-purpose="back-link" href="#public-page">
+<svg aria-hidden="true" class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Bumalik sa Public page</span>
+</a>
+<div class="h-5 w-px bg-slate-200 hidden sm:block"></div>
+<!-- System Name / Organization -->
+<div class="hidden sm:flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-md bg-brand-sidebar flex items-center justify-center text-white font-bold text-xs shadow-sm">
+            AV
+          </div>
+<div>
+<span class="text-xs font-semibold text-slate-900 tracking-tight">ANHS Vote</span>
+<span class="text-[11px] text-slate-500 block -mt-0.5">Ayala National High School</span>
+</div>
+</div>
+</div>
+<!-- Blockchain Live Status Badge -->
+<div class="flex items-center gap-3">
+<div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200/70 text-emerald-700 text-xs font-medium">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+</span>
+<span class="hidden md:inline font-mono">Blockchain Online</span>
+<span class="text-emerald-600 font-mono text-[11px]">#14,892</span>
+</div>
+<div class="h-4 w-px bg-slate-200 hidden sm:block"></div>
+<!-- SSLG Current Session Indicator -->
+<div class="hidden lg:flex items-center text-xs text-slate-500 bg-slate-100/90 px-3 py-1 rounded-md border border-slate-200">
+<span class="font-medium text-slate-700 mr-1.5">Halalan:</span> SSLG 2026 (kasalukuyan)
+        </div>
+</div>
+</div>
+</header>
+<!-- END: TopNavigationBar -->
+<!-- BEGIN: MainContentContainer -->
+<main class="flex-1 flex flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-8">
+<div class="w-full max-w-lg space-y-6">
+<!-- Section Title & Sub-header -->
+<div class="text-center space-y-2">
+<div class="inline-flex items-center justify-center p-2 bg-blue-100/70 text-brand-600 rounded-xl mb-1">
+<!-- Blockchain Shield Icon -->
+<svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+<path d="m9 12 2 2 4-4"></path>
+</svg>
+</div>
+<h1 class="text-3xl font-extrabold text-slate-900 tracking-tight sm:text-4xl">
+          ANHS Blockchain Voting
+        </h1>
+<p class="text-sm text-slate-500 max-w-sm mx-auto">
+          Opisyal at desentralisadong sistema ng pagboto para sa Kataas-taasang Samahan ng mga Mag-aaral (SSLG)
+        </p>
+</div>
+<!-- BEGIN: TokenVerificationCard -->
+<div class="bg-white rounded-2xl border border-slate-200/90 shadow-card p-7 sm:p-9 relative overflow-hidden transition-all duration-200" data-purpose="token-card">
+<!-- Step Progress Indicator -->
+<div class="flex items-center justify-between pb-5 border-b border-slate-100 mb-6">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-600 text-white text-xs font-semibold">1</span>
+<span class="text-xs font-semibold text-slate-800 uppercase tracking-wider">Pagpapatunay ng Voter Token</span>
+</div>
+<span class="text-xs text-slate-400 font-mono">Hakbang 1 ng 2</span>
+</div>
+<form action="#ballot" class="space-y-6" data-purpose="voter-auth-form" id="vote-token-form" method="POST">
+<!-- Token Input Field Container -->
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<label class="block text-base font-bold text-slate-900" for="voter-token">
+                Ilagay ang iyong token
+              </label>
+<span class="text-xs font-medium text-brand-600 bg-brand-50 px-2 py-0.5 rounded border border-brand-100">
+                8-character key
+              </span>
+</div>
+<!-- Input Box with Key Icon & Mono Font -->
+<div class="relative rounded-xl shadow-sm">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
+<svg class="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<input aria-describedby="token-instructions" autocomplete="off" class="token-input block w-full rounded-xl border border-slate-300 py-3.5 pl-11 pr-24 text-base font-mono font-semibold text-slate-900 placeholder:text-slate-400 uppercase focus:border-brand-600 focus:outline-none focus:ring-4 focus:ring-brand-500/15 transition duration-150 ease-in-out" id="voter-token" maxlength="8" name="token" pattern="[A-Za-z0-9]{8}" placeholder="8-character token" required="" spellcheck="false" type="text"/>
+<!-- Character Counter Badge -->
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3.5">
+<span class="text-xs font-mono text-slate-400 bg-slate-100 px-2 py-1 rounded" id="char-counter">
+                  0/8
+                </span>
+</div>
+</div>
+<p class="text-xs text-slate-500 flex items-center gap-1.5 pt-1">
+<svg class="w-3.5 h-3.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+              Ibinigay ng Commission on Elections (COMELEC) ng ANHS ang token na ito.
+            </p>
+</div>
+<!-- Submit Button -->
+<div>
+<button class="w-full inline-flex justify-center items-center gap-2 rounded-xl bg-brand-600 px-5 py-3.5 text-base font-semibold text-white shadow-sm hover:bg-brand-700 active:bg-brand-800 focus:outline-none focus:ring-4 focus:ring-brand-500/25 transition-all duration-150 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" data-purpose="submit-token-button" id="submit-btn" type="submit">
+<span>Magpatuloy</span>
+<svg class="w-4 h-4 text-white/90" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</form>
+<!-- Warning Subtext Box (from IMAGE_2) -->
+<div class="mt-6 pt-5 border-t border-slate-100 flex items-start gap-3 text-left" id="token-instructions">
+<div class="p-1 rounded-md bg-amber-50 text-amber-600 mt-0.5 flex-shrink-0">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<p class="text-xs leading-relaxed text-slate-600 font-medium">
+<strong class="text-slate-800 font-semibold">Mahalagang Paalala:</strong> Isang beses lang magagamit ang token. Huwag ipakita o ipasa sa iba.
+          </p>
+</div>
+<!-- Blockchain Transparency Notice (from IMAGE_2) -->
+<div class="mt-4 p-3.5 bg-slate-50 border border-slate-200/80 rounded-xl text-left">
+<div class="flex items-start gap-2.5">
+<svg class="w-4 h-4 text-brand-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<p class="text-xs text-slate-600 leading-normal">
+              Maaaring makita ang pinili sa blockchain transaction ledger. Hindi anonymous ang kasalukuyang sistema upang mapanatili ang buong transparency ng halalan.
+            </p>
+</div>
+</div>
+</div>
+<!-- END: TokenVerificationCard -->
+<!-- Helper / Helpdesk Information -->
+<div class="flex items-center justify-between px-2 text-xs text-slate-500">
+<a class="hover:text-slate-800 transition-colors flex items-center gap-1" href="#need-help">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+          Nawala o hindi gumagana ang token?
+        </a>
+<a class="hover:text-brand-600 font-medium transition-colors" href="#blockchain-ledger">
+          Tingnan ang Publikong Ledger →
+        </a>
+</div>
+</div>
+</main>
+<!-- END: MainContentContainer -->
+<!-- BEGIN: MinimalFooter -->
+<footer class="w-full border-t border-slate-200/70 py-6 text-center text-xs text-slate-500" data-purpose="site-footer">
+<div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+<div class="flex items-center gap-2">
+<span class="font-semibold text-slate-700">ANHS Vote</span>
+<span>•</span>
+<span>Ayala National High School Supreme Secondary Learner Government (SSLG)</span>
+</div>
+<div class="flex items-center gap-4 text-slate-400 font-mono text-[11px]">
+<span>Network: Private PoA Node</span>
+<span>Port: 5173</span>
+</div>
+</div>
+</footer>
+<!-- END: MinimalFooter -->
+<!-- BEGIN: FormInteractivityScript -->
+<script data-purpose="token-counter-and-formatter">
+    document.addEventListener('DOMContentLoaded', () => {
+      const tokenInput = document.getElementById('voter-token');
+      const counter = document.getElementById('char-counter');
+      const form = document.getElementById('vote-token-form');
+
+      // Auto-focus input on page load
+      if (tokenInput) {
+        tokenInput.focus();
+        
+        tokenInput.addEventListener('input', (e) => {
+          // Force uppercase and remove invalid characters
+          let value = e.target.value.replace(/[^A-Za-z0-9]/g, '').toUpperCase();
+          e.target.value = value;
+          
+          // Update visual character counter
+          const len = value.length;
+          counter.textContent = `${len}/8`;
+          
+          if (len === 8) {
+            counter.classList.remove('bg-slate-100', 'text-slate-400');
+            counter.classList.add('bg-blue-100', 'text-brand-700', 'font-bold');
+          } else {
+            counter.classList.remove('bg-blue-100', 'text-brand-700', 'font-bold');
+            counter.classList.add('bg-slate-100', 'text-slate-400');
+          }
+        });
+      }
+
+      // Handle simple submission demonstration
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          if (tokenInput.value.length < 8) {
+            e.preventDefault();
+            alert('Paki-lagay ang buong 8-character token bago magpatuloy.');
+            tokenInput.focus();
+          }
+        });
+      }
+    });
+  </script>
+<!-- END: FormInteractivityScript -->
+</body></html>

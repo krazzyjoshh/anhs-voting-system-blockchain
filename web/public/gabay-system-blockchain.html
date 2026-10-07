@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ANHS Vote — System and Blockchain Guide</title>
+<style>
+:root{--blue:#2864f4;--ink:#132343;--muted:#526887;--line:#e0e8f5;--paper:#fff;--bg:#f4f7ff}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.8 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:960px;margin:32px auto;padding:48px;background:var(--paper);border:1px solid var(--line);border-radius:18px}h1,h2,h3{line-height:1.3}h1{font-size:clamp(30px,5vw,45px);letter-spacing:-1.4px;margin:12px 0 18px}h2{font-size:25px;margin:0 0 18px}h3{font-size:18px;margin:24px 0 8px}p{margin:10px 0 16px}a{color:#2055cf;text-underline-offset:3px}strong{font-weight:700}section{padding-top:36px;margin-top:36px;border-top:1px solid var(--line);scroll-margin-top:20px}.eyebrow{font-size:12px;letter-spacing:1.5px;color:var(--blue);font-weight:750;text-transform:uppercase}.lead{font-size:20px;color:var(--muted)}.meta{color:var(--muted);font-size:13px}.pill{display:inline-block;background:#edf3ff;color:#245ac4;border-radius:7px;padding:4px 10px;font-size:12px;font-weight:650;margin:3px 4px 3px 0}.callout,.script{background:#f1f6ff;border:1px solid #dce8fc;border-left:4px solid var(--blue);border-radius:10px;padding:20px 24px;margin:24px 0}.care{background:#fff9ec;border-color:#f0e5c7;border-left-color:#d99b30}.script{background:#f8faff;font-size:17px}.script p:last-child,.callout p:last-child{margin-bottom:0}.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;margin:20px 0}table{border-collapse:collapse;width:100%;font-size:14px;min-width:550px}th,td{padding:13px 15px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}th{background:#eef4ff;color:#305384}tr:last-child td{border-bottom:0}ul,ol{padding-left:25px}li{margin:8px 0}code{font:13px/1.6 ui-monospace,monospace;background:#edf3ff;border-radius:4px;padding:2px 5px;overflow-wrap:anywhere}.toc{display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;padding:20px 24px;border:1px solid var(--line);border-radius:10px}.toc a{font-size:14px;text-decoration:none}.flow{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;counter-reset:flow}.flow li{border:1px solid #dce7fa;border-radius:10px;background:#f8faff;padding:16px;margin:0;font-size:14px}.flow li:before{counter-increment:flow;content:counter(flow);display:block;color:var(--blue);font-weight:800;font-size:22px;margin-bottom:7px}.flow b{display:block}.small{font-size:13px;color:var(--muted)}.qa{padding:15px 0;border-bottom:1px solid var(--line)}.qa h3{margin:0 0 8px}.qa p:last-child{margin-bottom:0}.toolbar{display:flex;gap:10px;margin:22px 0}.toolbar button{font:inherit;font-size:13px;color:#fff;background:var(--blue);border:0;border-radius:8px;padding:10px 15px;cursor:pointer}.toolbar button:focus-visible,a:focus-visible{outline:3px solid #88b2ff;outline-offset:3px}.sources li{font-size:14px}.footer{padding-top:22px;margin-top:35px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}@media(max-width:680px){main{margin:0;padding:26px 20px;border:0;border-radius:0}.toc,.flow{grid-template-columns:1fr}.callout,.script{padding:17px}.lead{font-size:17px}h2{font-size:23px}}@media print{@page{size:A4;margin:16mm}body{background:#fff;font-size:11pt;line-height:1.6}main{max-width:none;margin:0;padding:0;border:0}h1{font-size:28pt}h2{font-size:19pt}h3{font-size:13pt}.toolbar,.toc{display:none}section{padding-top:20px;margin-top:20px}.callout,.script,.qa,.flow li{break-inside:avoid}h2,h3{break-after:avoid}.table-wrap{overflow:visible}table{min-width:0;font-size:9pt}th,td{padding:8px}a{color:#132343}.sources a{overflow-wrap:anywhere}.flow{grid-template-columns:1fr 1fr 1fr}.pill{border:1px solid #ddd}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div class="eyebrow">ANHS Vote · Learning and presentation guide</div>
+<h1>System and<br>Blockchain Guide</h1>
+<p class="lead">Understand how the Agusan National High School SSLG election app works, learn the blockchain concepts, and explain them in your own words.</p>
+<div><span class="pill">English</span><span class="pill">Solana Devnet</span><span class="pill">Presentation script and Q&amp;A included</span></div>
+<p class="meta">Based on the current project source code and official Solana documentation. Prepared: 6 October 2026. English translation: 7 October 2026.</p>
+<div class="toolbar"><button type="button" onclick="window.print()">Print / Save as PDF</button></div>
+<div class="callout"><strong>Remember this first</strong><p>ANHS Vote is a <strong>web-based school election system that uses Solana blockchain for election rules and candidate vote counts</strong>. It also uses a local database for students, login, tokens, receipts, and administrative information.</p></div>
+<nav class="toc" aria-label="Contents">
+<a href="#system">1. What is the system?</a><a href="#basics">2. Blockchain basics</a>
+<a href="#architecture">3. How do the parts connect?</a><a href="#storage">4. Database versus blockchain</a>
+<a href="#network">5. Solana and Devnet</a><a href="#flow">6. The voting flow</a>
+<a href="#rules">7. Preventing duplicate votes</a><a href="#tokens">8. Tokens, hashes, and signatures</a>
+<a href="#example">9. Sample election and abstaining</a><a href="#receipts">10. Receipts, verification, and retries</a>
+<a href="#limits">11. Limitations</a><a href="#script">12. Presentation script</a>
+<a href="#demo">13. Demonstrating the system</a><a href="#questions">14. Possible panel questions</a>
+<a href="#practice">15. Practice and cheat sheet</a><a href="#sources">16. Sources and code references</a>
+</nav>
+</header>
+<section id="system">
+<div class="eyebrow">01 · The application</div><h2>What is ANHS Vote?</h2>
+<p>This is a digital system for electing student leaders. It helps COMELEC/admin prepare elections, register voters, provide voting access, and view results. Students use assigned tokens instead of creating their own accounts or crypto wallets.</p>
+<div class="table-wrap"><table><thead><tr><th>User</th><th>System activities</th></tr></thead><tbody>
+<tr><td><strong>Admin / COMELEC</strong></td><td>Email/password login; student records and CSV import; positions and candidates; token generation; publishing, opening, and closing elections; reports and ledger verification.</td></tr>
+<tr><td><strong>Student / voter</strong></td><td>Token login; choosing a candidate or abstaining for each position; review; final submission; receipt.</td></tr>
+<tr><td><strong>Public visitor</strong></td><td>Election status, participation, announcements, permitted results, and receipt-code lookup. These do not require admin login.</td></tr>
+</tbody></table></div>
+<p>CSV import detects common headers and file formats. Column mapping, defaults, and an editable preview support other layouts. Preview records before saving; the system does not invent missing LRNs.</p>
+<p><strong>Purpose:</strong> improve election administration and provide blockchain evidence for recorded candidate votes. Election organizers remain responsible for identity checks and proper token distribution.</p>
+</section>
+<section id="basics">
+<div class="eyebrow">02 · Start here</div><h2>What is blockchain in simple terms?</h2>
+<p>Think of a <strong>shared record book</strong> of transactions. Many computers in the network follow the same rules to agree on which records are valid. Cryptography helps verify authorization and links between records. It is not an ordinary file that someone can simply edit on a laptop to replace the results.</p>
+<p>In this project, the student election app sends requests. The Solana network runs the program rules and records valid changes. The school website itself is not the entire blockchain.</p>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>Simple explanation</th><th>In this project</th></tr></thead><tbody>
+<tr><td>Blockchain / ledger</td><td>A shared record of network transactions and state.</td><td>Solana is the network used by the election program.</td></tr>
+<tr><td>Transaction</td><td>A signed request that may contain multiple instructions.</td><td>A submission batch may contain several candidate-vote instructions.</td></tr>
+<tr><td>Instruction</td><td>A command to a program.</td><td>For example, <code>cast_vote</code> for one position.</td></tr>
+<tr><td>Program / smart contract</td><td>Code that enforces rules on the blockchain.</td><td>The Rust/Anchor voting program checks registered tokens, valid candidates, and open elections.</td></tr>
+<tr><td>Account / state</td><td>Data stored at a blockchain address.</td><td>Election, Position, TokenRecord, and VoteRecord accounts.</td></tr>
+<tr><td>Validator</td><td>A computer participating in network processing and consensus.</td><td>Solana validators; student laptops are not automatically validators.</td></tr>
+<tr><td>RPC</td><td>An API the app uses to communicate with the blockchain.</td><td>Backend → Solana RPC → network.</td></tr>
+</tbody></table></div>
+<p class="small">Solana state is stored in accounts; transactions are signed requests containing instructions. Sources: <a href="https://solana.com/docs/core/accounts/account-structure">Solana account structure</a> and <a href="https://solana.com/docs/core/transactions">Solana transactions</a>.</p>
+<div class="script"><strong>If asked, “What is blockchain?”</strong><p>“Blockchain is a shared record system verified by a network. In our project, we use it to enforce voting rules and provide transaction evidence and vote counts that can be checked on Solana.”</p></div>
+</section>
+<section id="architecture">
+<div class="eyebrow">03 · System architecture</div><h2>How do the parts connect?</h2>
+<ol class="flow"><li><b>Browser / React</b>The interface used by admins, students, and public visitors.</li><li><b>Backend / Express</b>Checks login, eligibility, ballots, and submissions. Connects to SQLite and Solana.</li><li><b>SQLite + Solana</b>SQLite handles administration; Solana programs/accounts handle on-chain elections and votes.</li></ol>
+<p><strong>Stack:</strong> React + Vite for the frontend; Node.js + Express for the backend; SQLite for local data; Rust + Anchor for the Solana program. The backend client uses the Anchor library to call the program.</p>
+<p><strong>Who signs?</strong> The server wallet is the authority and fee payer in the current implementation. Students use voting tokens to access the app; they do not sign directly with their own Solana wallets.</p>
+<p>The appropriate description is a <strong>hybrid application with a blockchain component</strong>. The underlying network is decentralized, but the app still has a central backend and election authority. Using blockchain alone does not make the whole app fully decentralized.</p>
+</section>
+<section id="storage">
+<div class="eyebrow">04 · Where information lives</div><h2>What is stored in the database and on the blockchain?</h2>
+<div class="table-wrap"><table><thead><tr><th>Information</th><th>Storage</th><th>Purpose</th></tr></thead><tbody>
+<tr><td>Student LRN, name, grade/section, active/voted status</td><td>SQLite</td><td>Eligibility and administrative records.</td></tr>
+<tr><td>Admin email and password hash</td><td>SQLite</td><td>Admin authentication. The admin table stores a password hash, not a plain password.</td></tr>
+<tr><td>Plain voting code and student association</td><td>SQLite</td><td>Token login and assigned voter lookup.</td></tr>
+<tr><td>Election title, authority, chain status, position/token counts</td><td>Solana Election account</td><td>On-chain election setup and status.</td></tr>
+<tr><td>Position names, candidate names, candidate vote counters</td><td>Solana Position accounts, with a local setup copy</td><td>On-chain tally and published ballot.</td></tr>
+<tr><td>Token registration and votes-cast counter</td><td>Solana TokenRecord account</td><td>Recognizing registered token identifiers.</td></tr>
+<tr><td>Marker showing that a token has voted for a position</td><td>Solana VoteRecord account</td><td>Preventing duplicate votes for that position.</td></tr>
+<tr><td>Candidate selection and token hash in the vote instruction</td><td>Blockchain transaction data</td><td>Execution and transaction evidence, with privacy implications.</td></tr>
+<tr><td>Receipt code, election ID, transaction signatures, batch progress</td><td>SQLite</td><td>Receipt lookup and submission recovery.</td></tr>
+<tr><td>Announcements, schedule, school year, archived result snapshots</td><td>SQLite</td><td>Display metadata and administrative history.</td></tr>
+</tbody></table></div>
+<p><strong>Not everything on the dashboard is blockchain data.</strong> Candidate tallies come from Solana accounts. Public completed submissions/turnout use local completed receipts and the on-chain registered-token count. Announcements and schedules are local settings; opening and closing voting are separate admin actions on the chain.</p>
+<p>When public live results are hidden, the public API withholds vote counts until the election closes. <strong>This is a display restriction:</strong> it does not make public blockchain accounts private.</p>
+</section>
+<section id="network">
+<div class="eyebrow">05 · The network</div><h2>Why Solana Devnet?</h2>
+<p>The backend defaults to <code>https://api.devnet.solana.com</code>. The reviewed configuration had no alternative <code>RPC_URL</code> override, so it used Devnet. The Anchor development configuration includes a <code>localnet</code> entry, but the running web application follows the backend RPC setting.</p>
+<p><strong>Devnet</strong> is for application development and testing. It uses test SOL and may undergo ledger resets. Describe the current deployment as a development/prototype setup; do not promise permanent production election records on Devnet. Source: <a href="https://solana.com/docs/references/clusters">Solana clusters and endpoints</a>.</p>
+<h3>Consensus: PoS and PoH</h3>
+<p>Solana uses <strong>Proof of Stake (PoS)</strong> consensus. <strong>Proof of History (PoH)</strong> helps order events; it should not be described as a separate consensus mechanism replacing PoS. Sources: <a href="https://solana.com/staking">Solana staking/consensus explanation</a> and <a href="https://solana.com/solana-whitepaper.pdf">Solana whitepaper</a>.</p>
+<p>A <strong>student vote</strong> for a candidate differs from a <strong>validator consensus vote</strong> for blocks. COMELEC/server authority controls election operations; this does not make Solana a Proof of Authority network or a private school blockchain.</p>
+<h3>Why is there a SOL balance?</h3>
+<p>Network transactions incur fees, and creating on-chain data accounts requires a minimum balance. The server wallet pays in the current app, so students do not need SOL wallets. Dashboard cost estimates come from the project code and are not guaranteed final costs. Sources: <a href="https://solana.com/docs/core/fees">Solana fees</a> and <a href="https://solana.com/docs/core/accounts/account-structure">account balances/storage</a>.</p>
+</section>
+<section id="flow">
+<div class="eyebrow">06 · From preparation to receipt</div><h2>Step by step: how does voting happen?</h2>
+<ol>
+<li><strong>Prepare students.</strong> Admin adds/imports records and checks who is active and eligible.</li>
+<li><strong>Prepare the ballot.</strong> Admin adds positions/candidates and generates assigned eight-character voting codes. Database token generation and on-chain token registration are separate steps.</li>
+<li><strong>Publish the election.</strong> The backend creates Election/Position accounts and registers eligible unused token hashes. A frozen mapping connects local candidate IDs to on-chain candidate indices.</li>
+<li><strong>Open voting.</strong> The backend checks token registration before opening. In the usual flow, on-chain status moves from Pending → Open → Closed.</li>
+<li><strong>Token login.</strong> The backend checks the code, active student, unused token, and open election. It creates a voter session tied to the current election.</li>
+<li><strong>Candidate selection.</strong> Voters choose a candidate or abstain for each position. Draft choices stay in the browser tab and are not yet on-chain votes.</li>
+<li><strong>Review and final submission.</strong> The backend validates all positions and candidate indices. The server wallet signs and sends non-abstain vote instructions.</li>
+<li><strong>Chain validation.</strong> The voting program checks the authorized signer, registered token, open status, valid option, and unique token-position vote record before updating the tally.</li>
+<li><strong>Completion and receipt.</strong> Once all required batches finish, the database marks the token/student as used/voted and creates a receipt. It includes all transaction signatures for non-abstain votes.</li>
+</ol>
+<p><strong>Once closed:</strong> the current program cannot reopen the same election. Status only moves forward; Pending → Closed is also possible when closing before opening. The archive/new-election operation uses a new election ID for the next election.</p>
+</section>
+<section id="rules">
+<div class="eyebrow">07 · On-chain rules</div><h2>How are duplicate votes prevented?</h2>
+<p>A <strong>Program Derived Address (PDA)</strong> is generated from the program ID and seeds. Identical inputs produce the same address. Source: <a href="https://solana.com/docs/core/pda">Solana PDA documentation</a>.</p>
+<p>For a candidate vote, the program creates a unique marker using:</p>
+<div class="callout"><strong>VoteRecord address = program + position address + token hash</strong><p>If the same token votes again for the same position, it attempts to create an account at the same address. That record already exists, so duplicate creation is rejected and the tally is not incremented again.</p></div>
+<div class="table-wrap"><table><thead><tr><th>Rule</th><th>Implementation</th></tr></thead><tbody>
+<tr><td>Authorized operation</td><td>The signer must match the election authority.</td></tr>
+<tr><td>Registered token</td><td>A token PDA must exist for the election and token hash.</td></tr>
+<tr><td>Open election</td><td><code>cast_vote</code> requires Open status.</td></tr>
+<tr><td>Valid candidate</td><td>The candidate index must be within that position’s candidates.</td></tr>
+<tr><td>One vote per position</td><td>A unique VoteRecord PDA for each token-position pair.</td></tr>
+<tr><td>One completed app submission</td><td>A local used flag and unique receipt per election/token hash.</td></tr>
+</tbody></table></div>
+<p><strong>Nuance:</strong> on-chain protection means one vote per token per position. Full submission completion, abstain tracking, and student eligibility also depend on backend/database rules. The program cannot establish the real identity of the person holding a token.</p>
+<p>The reviewed source has no direct <code>set_votes</code> or edit-tally instruction. This does not mean all changes or abuse are impossible: server/authority security and the deployed program’s upgrade policy matter.</p>
+</section>
+<section id="tokens">
+<div class="eyebrow">08 · Three different identifiers</div><h2>Voting tokens, hashes, sessions, and signatures</h2>
+<div class="table-wrap"><table><thead><tr><th>Item</th><th>What is it?</th><th>How to remember it</th></tr></thead><tbody>
+<tr><td>Voting token</td><td>An assigned eight-character app access code.</td><td>A ticket to the voting page. It is not an SPL token or cryptocurrency.</td></tr>
+<tr><td>Token HMAC/hash</td><td>The backend derives a SHA-256 HMAC using a secret pepper and normalized code.</td><td>An identifier for chain registration/votes. It does not encrypt candidate choices.</td></tr>
+<tr><td>Voter session JWT</td><td>A signed login session with a voter role/election ID; current expiry is two hours.</td><td>Proof to the API that the tab completed token login. Separate from the original voting code.</td></tr>
+<tr><td>Transaction signature</td><td>The identifier/signature of a signed Solana transaction.</td><td>Used to locate a chain transaction. One receipt may have multiple signatures.</td></tr>
+<tr><td>Receipt code</td><td>A random twelve-character reference stored in SQLite.</td><td>Looked up at <code>/verify</code>. It is not a transaction signature.</td></tr>
+</tbody></table></div>
+<p><strong>Hashing alone does not establish anonymity.</strong> The voting code is locally associated with a student. Blockchain instructions contain token hashes and candidate indices. Access to records and server secrets may link identities to choices, and linked transactions may reveal selections. The current version offers verification/transparency with privacy limitations.</p>
+</section>
+<section id="example">
+<div class="eyebrow">09 · Concrete example</div><h2>Example: one voter, three positions</h2>
+<p>This is a fictional example. Four tokens are registered, and the first student is submitting.</p>
+<div class="table-wrap"><table><thead><tr><th>Position</th><th>Choice</th><th>Effect</th></tr></thead><tbody>
+<tr><td>President</td><td>Ana</td><td>+1 to Ana’s President tally.</td></tr>
+<tr><td>Vice President</td><td>Abstain</td><td>No candidate-vote instruction for this position.</td></tr>
+<tr><td>Secretary</td><td>Pedro</td><td>+1 to Pedro’s Secretary tally.</td></tr>
+</tbody></table></div>
+<p>Result: <strong>1 completed submission, 2 candidate-vote instructions, and 1 receipt</strong>. Turnout = 1 ÷ 4 × 100 = <strong>25%</strong>. Position vote totals may differ because voters can abstain.</p>
+<p><strong>Abstaining for all positions</strong> still completes a submission and marks the local token as used, but sends no candidate-vote transaction. A local all-abstain receipt is the app’s evidence. Not every receipt has a blockchain transaction.</p>
+<p>Public candidate percentages use candidate votes for that position as their denominator. If Ana receives the only President vote, her position share is 100% even though overall turnout is only 25%.</p>
+</section>
+<section id="receipts">
+<div class="eyebrow">10 · Evidence and recovery</div><h2>What do receipts and the ledger prove?</h2>
+<p><code>/verify</code> looks up receipt codes in the local database and shows available transaction links. A “valid receipt” means the record was found; it is not automatically independent proof of every ballot choice or secrecy.</p>
+<p><strong>Admin → Ledger → Verify</strong> checks counts and transaction statuses. Results are PASS, WARNING, FAIL, or N/A. Signature confirmation/status comes from the RPC. Status API source: <a href="https://solana.com/docs/rpc/http/getsignaturestatuses">getSignatureStatuses</a>.</p>
+<ul><li><strong>PASS:</strong> the specific consistency check passed.</li><li><strong>WARNING:</strong> evidence is incomplete/uncertain, a mismatch needs review, or RPC history is unavailable.</li><li><strong>FAIL:</strong> the check found an inconsistency or transaction error.</li><li><strong>N/A:</strong> not applicable, such as a chain signature for an all-abstain receipt.</li></ul>
+<h3>If the connection is interrupted</h3>
+<p>The project batches up to six positions. Seven positions with candidate choices may require two transactions: the first six, then the seventh. This is an <strong>app batching choice</strong>, not a universal six-position Solana limit.</p>
+<p><em>Each transaction</em> is atomic: if one instruction fails, that transaction’s state changes revert. Source: <a href="https://solana.com/docs/core/transactions">Solana transactions</a>. A ballot spanning multiple batches is not one atomic transaction.</p>
+<p>Local batch signatures and transaction lifetimes are recorded before broadcast. Retries check previous signatures and confirmed instruction data. Confirmed batches are not simply repeated; pending transactions may need more time, and uncertain evidence may need escalation. Browser selections remain locked while submission is pending to support safe retries.</p>
+<p>If completion succeeded but the response was lost, the API can return the existing receipt. “The success screen did not appear” does not necessarily mean “no vote reached the blockchain.”</p>
+</section>
+<section id="limits">
+<div class="eyebrow">11 · Honest explanation</div><h2>What should you clarify during the defense?</h2>
+<div class="table-wrap"><table><thead><tr><th>Avoid saying</th><th>More accurate explanation</th></tr></thead><tbody>
+<tr><td>“All data is on the blockchain.”</td><td>Hybrid: administration/receipts in SQLite, election rules and candidate tallies on Solana.</td></tr>
+<tr><td>“Votes are 100% anonymous and encrypted.”</td><td>Tokens are HMAC-derived, but choices may appear in transactions and identities may be linked in the backend.</td></tr>
+<tr><td>“The app is fully decentralized.”</td><td>It still has a centralized server, local database, and server signing wallet.</td></tr>
+<tr><td>“Nobody can cheat.”</td><td>Rules and evidence still require trusted eligibility checks, token handling, server/key security, and review.</td></tr>
+<tr><td>“Devnet records last forever.”</td><td>Devnet is for testing and may reset; backups and production planning are needed.</td></tr>
+<tr><td>“Valid receipt means everything was proven.”</td><td>Lookup proves local existence; ledger checks have a limited scope.</td></tr>
+<tr><td>“One click always means one atomic ballot.”</td><td>Larger ballots can use multiple transaction batches.</td></tr>
+<tr><td>“The schedule automatically opens/closes voting.”</td><td>The schedule is display metadata; admin chain-status operations control voting in the reviewed implementation.</td></tr>
+</tbody></table></div>
+<p>Solana programs may be upgradeable if an upgrade authority exists. This guide did not inspect the deployed program’s actual upgrade-authority state, so it does not claim the program is permanently immutable. Source: <a href="https://solana.com/docs/core/programs">Solana programs and upgrades</a>.</p>
+<p><strong>If SQLite is lost:</strong> chain tallies may still be readable when the network/accounts are available, but they do not automatically restore student associations, receipt-code mappings, administrative metadata, or batch-recovery records. Chain evidence and proper database backups are both needed.</p>
+<p>This document explains reviewed source and local configuration. It is not an independent security audit or proof that this exact source matches deployed bytecode. No new votes or blockchain transactions were sent while preparing it.</p>
+</section>
+<section id="script">
+<div class="eyebrow">12 · Say it in your own words</div><h2>A script you can practice</h2>
+<h3>Short introduction — about 45–60 seconds</h3>
+<div class="script"><p>“Our project is ANHS Vote, a web-based election system for the SSLG of Agusan National High School. It has an admin portal for students, candidates, tokens, and election management; token login and digital ballots for voters; and public results and receipt verification.</p><p>We use Solana Devnet. Student information and receipts are in a local database, while election setup and candidate vote counts are on the blockchain. When a voter submits, the backend checks eligibility and choices, then the server wallet sends the vote transaction. A program rule allows one vote per registered token for each position.</p><p>The blockchain provides verifiable transaction records and controlled tally updates. The implementation is still a hybrid prototype, and we do not claim it is fully anonymous or fully decentralized.”</p></div>
+<h3>Longer explanation — three parts</h3>
+<ol><li><strong>Problem and users:</strong> “We want to improve student election management. Admin prepares records; voters make selections; the public sees permitted election information.”</li><li><strong>Actual blockchain flow:</strong> “We publish election setup, register token hashes, and open the election. Final submission calls the voting program through the server. The program checks open status, token, candidate, and unique vote record before incrementing the candidate tally.”</li><li><strong>Verification and limits:</strong> “Receipts and Explorer links provide chain evidence. A local database and server wallet remain, and choices may be linked. Devnet is a testing environment, so privacy improvements and production review are needed before using this as production election infrastructure.”</li></ol>
+<div class="callout"><strong>Remember: problem → flow → evidence → limits.</strong><p>Start with who uses the system, what happens to a vote, and where to find evidence before introducing long acronyms.</p></div>
+</section>
+<section id="demo">
+<div class="eyebrow">13 · Walkthrough</div><h2>How can you demonstrate the system while explaining?</h2>
+<ol>
+<li><strong>Public page:</strong> show the election title/status, participation, and results. Explain which values are chain tallies and which are local receipt counts.</li>
+<li><strong>Admin → Students:</strong> show records and CSV preview using fictional/demo data.</li>
+<li><strong>Admin → Candidates/Tokens:</strong> explain the ballot and assigned access codes. Do not show real students’ usable voting codes.</li>
+<li><strong>Admin → Blockchain:</strong> show configured wallet/program/election addresses, registration status, and SOL estimates. Publishing and opening are separate actions; database tokens alone are insufficient.</li>
+<li><strong>Voting:</strong> if a demo election is prepared, use a demo token, select choices, review, and submit. Explain that choices remain drafts before submission. An actual demo submission changes state on the selected network.</li>
+<li><strong>Receipt and Explorer:</strong> show the code and every available transaction link. Point out Devnet, transaction success/status, and program/instruction/account evidence. Reading candidate indices may require decoding.</li>
+<li><strong>Ledger:</strong> run consistency checks and explain PASS/WARNING/FAIL/N/A. An all-abstain demo normally has no chain signature.</li>
+</ol>
+<p><strong>If the demo election is closed:</strong> show archived results or prepare a new demo election through the existing workflow. The current program cannot reopen a closed election. Finishing a presentation does not require closing an ongoing election.</p>
+</section>
+<section id="questions">
+<div class="eyebrow">14 · Panel Q&amp;A</div><h2>Possible questions and accurate answers</h2>
+<div class="qa"><h3>1. Why keep a database when you have blockchain?</h3><p>“They serve different purposes: SQLite stores identities, eligibility, app login, and receipts; blockchain stores published elections and candidate tallies. The project uses a hybrid design.”</p></div>
+<div class="qa"><h3>2. Why blockchain instead of only a database?</h3><p>“It provides on-chain rules and network transaction evidence separate from the local display/database. It adds complexity, network dependency, and costs, and does not replace administrative responsibilities.”</p></div>
+<div class="qa"><h3>3. How do you know the voter is a real student?</h3><p>“That depends on verified student records and proper token assignment/distribution. Blockchain validates token identifiers and rules; it does not independently verify student identity.”</p></div>
+<div class="qa"><h3>4. What if a token is passed to someone else?</h3><p>“Anyone with access to the code may use it. The system does not automatically recognize the true owner, so controlled distribution and token privacy matter.”</p></div>
+<div class="qa"><h3>5. How do you prevent double voting?</h3><p>“Local used-token/receipt rules and a unique on-chain VoteRecord protect each token-position pair. A duplicate vote cannot create the same vote account again.”</p></div>
+<div class="qa"><h3>6. Can people see which candidate was selected?</h3><p>“Choices may be visible in transactions. Student LRNs/names are not directly sent in cast-vote instructions, but backend records and token identifiers allow linkage. We do not claim a secret-ballot guarantee in this version.”</p></div>
+<div class="qa"><h3>7. Does every student need a crypto wallet?</h3><p>“Not in the current implementation. Voters use token login, and the server wallet signs and pays fees.”</p></div>
+<div class="qa"><h3>8. Does the student pay?</h3><p>“There is no direct wallet payment in the voter UI. The server wallet covers network/account costs, using test SOL on Devnet.”</p></div>
+<div class="qa"><h3>9. Are all abstentions on the blockchain?</h3><p>“No candidate instruction is sent for an abstained position. An all-abstain submission has only a local completed receipt and no candidate-vote transaction.”</p></div>
+<div class="qa"><h3>10. What happens if submission returns an error?</h3><p>“Keep the same choices and use the existing retry/recovery flow, since a batch may already be confirmed. The backend checks signatures before resending.”</p></div>
+<div class="qa"><h3>11. Can the admin change vote counts?</h3><p>“The reviewed program has no direct edit-tally instruction, and published setup operations are locked in the app. Server signing authority and possible program upgrades remain trust considerations; we do not promise immunity to compromised authority.”</p></div>
+<div class="qa"><h3>12. Is this ready for a production election?</h3><p>“The configured network is Devnet, with identified privacy and centralization limits. Deployment, access/key management, backups, privacy, and security need review before claiming production readiness.”</p></div>
+</section>
+<section id="practice">
+<div class="eyebrow">15 · Rehearse</div><h2>How can you learn the explanation?</h2>
+<ol><li><strong>Read sections 1–6.</strong> Explain one student vote to a friend without looking at notes.</li><li><strong>Draw:</strong> Browser → Backend → SQLite / Solana. Explain the request or data at each arrow.</li><li><strong>Distinguish four items:</strong> voting code, session JWT, receipt code, and transaction signature. Do not call them all the same “token.”</li><li><strong>Use section 9’s example.</strong> Why is there one submission but two candidate votes? Why do turnout and candidate percentages differ?</li><li><strong>Practice the Q&amp;A.</strong> Answer briefly, then give a concrete example.</li></ol>
+<div class="callout"><strong>Cheat sheet — six lines to know</strong><ul><li><strong>Purpose:</strong> school election management and token-based voting.</li><li><strong>Architecture:</strong> React → Express → SQLite + Solana.</li><li><strong>Network:</strong> Solana Devnet for the current development setup.</li><li><strong>Signer:</strong> server wallet; students do not need their own wallets in this flow.</li><li><strong>Protection:</strong> registered token, open status, valid candidate, unique token-position vote record.</li><li><strong>Limits:</strong> hybrid design, no anonymity guarantee, local receipts/abstentions, and Devnet reset risk.</li></ul></div>
+<p><strong>If you do not know an answer:</strong> “What we verified in the current implementation is ____. We have not verified ____ yet, so I cannot claim that.” This is clearer and more credible than making an incorrect technical claim.</p>
+</section>
+<section id="sources">
+<div class="eyebrow">16 · References</div><h2>What is this guide based on?</h2>
+<h3>Actual project code</h3>
+<div class="table-wrap"><table><thead><tr><th>Source file</th><th>Reviewed behavior</th></tr></thead><tbody>
+<tr><td><code>server/src/chain.js</code></td><td>Devnet default, server wallet, HMAC token identifiers, PDAs, batching, transaction sending/confirmation, chain results.</td></tr>
+<tr><td><code>chain/programs/voting-system/src/lib.rs</code></td><td>Election/Position/TokenRecord/VoteRecord structures, authority constraints, statuses, candidate checks, duplicate prevention.</td></tr>
+<tr><td><code>chain/target/idl/voting_system.json</code></td><td>Client program address and create/add/register/status/cast-vote instruction interface.</td></tr>
+<tr><td><code>server/src/routes/voter.js</code></td><td>Eligibility, voter JWT, ballot validation, abstentions, retries, receipts, completion flags.</td></tr>
+<tr><td><code>server/src/routes/blockchain.js</code></td><td>Publishing, registration-before-open check, close/archive/new-election flow.</td></tr>
+<tr><td><code>server/src/db.js</code>, <code>receipts.js</code></td><td>Local student/token/receipt/batch tables and receipt-code lookup.</td></tr>
+<tr><td><code>server/src/routes/public.js</code>, <code>ledger.js</code></td><td>Public results, turnout, hidden-tally setting, ledger consistency-check scope.</td></tr>
+<tr><td><code>server/src/models.js</code></td><td>Frozen/verified mapping of local candidates to published chain order.</td></tr>
+<tr><td><code>web/src/pages/Vote.jsx</code>, <code>StudentCsvImport.jsx</code></td><td>Voting stages, drafts, locked retries, CSV preview, mapping, corrections.</td></tr>
+</tbody></table></div>
+<h3>Official Solana references</h3>
+<ul class="sources"><li><a href="https://solana.com/docs/references/clusters">Clusters and Public RPC Endpoints</a> — Devnet purpose and reset caveat.</li><li><a href="https://solana.com/docs/core/accounts/account-structure">Account Structure</a> — data, ownership, addresses, storage balance.</li><li><a href="https://solana.com/docs/core/transactions">Transactions</a> — instructions, signatures, atomic execution.</li><li><a href="https://solana.com/docs/core/programs">Programs</a> — program/state model and upgrade authority.</li><li><a href="https://solana.com/docs/core/pda">Program Derived Addresses</a> — deterministic addresses from seeds.</li><li><a href="https://solana.com/docs/core/fees">Fees</a> — network transaction costs.</li><li><a href="https://solana.com/docs/rpc/http/getsignaturestatuses">getSignatureStatuses</a> — transaction-status queries.</li><li><a href="https://solana.com/staking">Staking / Proof of Stake</a> and <a href="https://solana.com/solana-whitepaper.pdf">Solana whitepaper</a> — consensus and Proof of History background.</li></ul>
+<p class="small">Official sources describe general Solana concepts; project source describes app-specific behavior. Configuration or implementation may change after this date. A configured program address and matching IDL do not replace independent deployed-bytecode verification.</p>
+</section>
+<div class="footer">ANHS Vote · Self-contained guide. Opens offline in a browser; internet is needed only for external references. To create a PDF: Print / Save as PDF → select Save as PDF.</div>
+</main>
+</body>
+</html>

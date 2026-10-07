@@ -1,0 +1,19 @@
+# Importing students
+
+Open Admin → Students and select your CSV. The application reads the file and shows a preview before saving any students. Review the columns and records, then choose **I-import ang … student(s)**. A template is available, but your file does not need to follow its column order or header names.
+
+The importer detects comma, semicolon, tab and pipe separators, Excel `sep=` directives, common English/Filipino headers, and header rows after a title/preamble. The browser reads UTF-8, UTF-16 LE/BE, and Windows-1252 exports. Quoted cells may contain separators or newlines; malformed quoting still needs correction in the file.
+
+For unknown headers or files without headers, choose the separator, the first relevant row, whether it contains headers, and the column for each student field. Extra unrelated columns are ignored. Selecting a column for one field clears any previous mapping of that same column to another field. Use **I-update ang preview** after changing the format, mapping, defaults or records; saving stays disabled until the updated preview has been checked.
+
+A whole-name column can supply first and last names. Names containing a comma are read as `Last name, First name`. Other names use the selected First→Last or Last→First order. Common surname prefixes such as Dela/De la/De los are preserved in First→Last order; given names stay together instead of guessing a middle name. Check the split and edit the preview when needed. Separate first/last-name columns take precedence over the whole-name column.
+
+A combined grade/section such as `7-Rizal`, `Grade 8 / Bonifacio`, or `9 A` is split automatically. Numeric grades become `Grade N`, and M/F become Male/Female. Shared default grade and section can fill missing values without changing rows that already have them. The optional sex field retains the existing Male default when empty. Excel text wrappers around LRNs are removed; leading zeros are preserved. An LRN already converted to scientific notation is flagged for correction rather than guessing lost digits.
+
+The editable preview shows the first 20 records and up to 20 additional rows with errors. Correct missing LRNs, names or other values directly there, then refresh the preview. Further error rows appear as previous ones are resolved. The system requires a real LRN, first/last name, grade and section for each imported student. It cannot reconstruct information absent from the file; you can supply it through the preview or defaults. Rows with ambiguous extra values are flagged rather than shifted into the wrong fields.
+
+Saving imports all valid records, including those outside the displayed sample. The summary reports new records, updated records, and skipped rows; error details list up to 20 skipped rows. An existing LRN updates that student's name, grade, section and sex while preserving active/voted status and the existing token. Preview and import remain blocked after election publication. Uploading students does not generate tokens.
+
+Implementation is in `server/src/student-csv.js`, the admin preview/upload routes, and `web/src/components/StudentCsvImport.jsx`. Preview only reads/normalizes the supplied CSV; final import repeats that normalization on the server with the same mapping/defaults/edits. The browser cannot bypass server validation by claiming a row is valid.
+
+Verification includes temporary-database backend tests, page regressions, and `web/tests/csv-browser.cjs`. The CSV browser test runs the real normalizer with intercepted APIs and in-memory records, covering shuffled/unknown/headerless files, full names, combined grade/section, row corrections, shared defaults, UTF-16/Windows-1252 exports, preview-before-save, failed-upload retry, partial-import feedback and mobile layout. It never changes the real database. Screenshots are in `docs/ui-reference/students-csv-preview.png` and `students-csv-mobile-preview.png`.

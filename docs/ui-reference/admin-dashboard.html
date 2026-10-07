@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"on-tertiary-fixed":"#002113","surface-bright":"#f8f9ff","surface-tint":"#0053db","surface-dim":"#cbdbf5","on-primary-fixed-variant":"#003ea8","error":"#ba1a1a","primary-fixed-dim":"#b4c5ff","primary-container":"#2563eb","on-tertiary-container":"#bdffdb","background":"#f8f9ff","surface-container":"#e5eeff","secondary":"#565e74","on-secondary-fixed":"#131b2e","tertiary-fixed-dim":"#4edea3","primary-fixed":"#dbe1ff","secondary-fixed":"#dae2fd","on-surface-variant":"#434655","on-background":"#0b1c30","surface-variant":"#d3e4fe","on-primary":"#ffffff","primary":"#004ac6","surface-container-highest":"#d3e4fe","on-error":"#ffffff","on-secondary":"#ffffff","on-surface":"#0b1c30","tertiary-container":"#007d55","inverse-primary":"#b4c5ff","inverse-on-surface":"#eaf1ff","tertiary-fixed":"#6ffbbe","on-primary-fixed":"#00174b","tertiary":"#006242","on-tertiary":"#ffffff","on-primary-container":"#eeefff","on-secondary-fixed-variant":"#3f465c","error-container":"#ffdad6","surface-container-high":"#dce9ff","surface":"#f8f9ff","on-secondary-container":"#5c647a","outline-variant":"#c3c6d7","surface-container-low":"#eff4ff","outline":"#737686","secondary-container":"#dae2fd","surface-container-lowest":"#ffffff","secondary-fixed-dim":"#bec6e0","on-tertiary-fixed-variant":"#005236","inverse-surface":"#213145","on-error-container":"#93000a"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-2xl":"3rem","margin":"1rem","space-lg":"1.5rem","gutter-lg":"1.5rem","space-xs":"0.25rem","gutter":"1rem","space-md":"1rem","margin-md":"1.5rem","margin-lg":"2rem","space-xl":"2rem","space-sm":"0.5rem"},"fontFamily":{"headline-xl-mobile":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"stat-display":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"]},"fontSize":{"headline-xl-mobile":["28px",{"lineHeight":"36px","fontWeight":"800"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"label-sm":["11px",{"lineHeight":"14px","fontWeight":"700"}],"headline-lg-mobile":["20px",{"lineHeight":"28px","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"stat-display":["32px",{"lineHeight":"38px","fontWeight":"800"}],"headline-xl":["36px",{"lineHeight":"44px","fontWeight":"800"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"label-md":["13px",{"lineHeight":"18px","fontWeight":"600"}],"headline-md":["18px",{"lineHeight":"26px","fontWeight":"600"}],"headline-lg":["24px",{"lineHeight":"32px","fontWeight":"700"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between"><div class="flex flex-col"><div class="h-16 px-gutter flex items-center gap-space-sm bg-surface-container-lowest shadow-[0_1px_4px_rgba(0,0,0,0.02)]"><div class="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[20px]">how_to_vote</span></div><div class="flex flex-col leading-tight"><div class="flex items-center gap-space-xs"><span class="font-headline-md text-headline-md font-bold tracking-tight text-on-surface">ANHS Vote</span><span class="px-1.5 py-0.5 rounded-full bg-secondary-container font-label-sm text-label-sm text-on-secondary-fixed font-semibold">SSG</span></div><span class="font-body-sm text-body-sm text-on-surface-variant">Ayala National High</span></div></div><div class="px-gutter pt-space-md"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline px-space-xs">Civic Core</span></div><nav class="flex flex-col gap-1 px-space-sm mt-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold shadow-sm"><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg transition-colors bg-primary-container text-on-primary font-bold shadow-sm" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="font-label-md text-label-md">Dashboard</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="students" href="#"><span class="material-symbols-outlined text-[20px]">group</span><span class="font-label-md text-label-md">Students</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="candidates" href="#"><span class="material-symbols-outlined text-[20px]">badge</span><span class="font-label-md text-label-md">Candidates</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="tokens" href="#"><span class="material-symbols-outlined text-[20px]">key</span><span class="font-label-md text-label-md">Tokens</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="blockchain" href="#"><span class="material-symbols-outlined text-[20px]">hub</span><span class="font-label-md text-label-md">Blockchain</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="ledger" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span class="font-label-md text-label-md">Ledger</span></a></nav><div class="px-gutter pt-space-lg"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline px-space-xs">External Access</span></div><nav class="flex flex-col gap-1 px-space-sm mt-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold shadow-sm"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="public-portal" href="#"><span class="material-symbols-outlined text-[20px]">public</span><span class="font-label-md text-label-md">Public page</span><span class="material-symbols-outlined text-[16px] ml-auto text-outline">open_in_new</span></a></nav></div><div class="p-space-sm m-space-sm rounded-xl bg-surface-container-lowest shadow-[0_1px_6px_rgba(0,0,0,0.03)] flex flex-col gap-space-xs"><div class="flex items-center gap-space-sm p-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col truncate"><span class="font-label-md text-label-md font-bold text-on-surface truncate">Ayala Admin</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate">admin@anhs.edu.ph</span></div></div><a class="flex items-center justify-center gap-space-xs w-full py-1.5 px-space-sm rounded-lg text-error hover:bg-error-container hover:text-on-error-container transition-colors" data-path="logout" href="#"><span class="material-symbols-outlined text-[18px]">logout</span><span class="font-label-md text-label-md font-semibold">Logout</span></a></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-gutter-lg flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="flex items-center gap-space-xs text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">home</span><span class="font-body-sm text-body-sm font-semibold text-on-surface-variant">Portal</span><span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span><span class="font-body-sm text-body-sm font-bold text-primary">Ayala National High School</span></div><span class="h-4 w-[1px] bg-outline-variant mx-space-xs"></span><div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-tertiary font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span><span>Live Election Active</span></div></div><div class="flex items-center gap-space-md"><div class="hidden md:flex items-center gap-space-xs px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px] text-tertiary">sync</span><span>Block #14,892</span><span class="text-outline">•</span><span class="text-tertiary font-semibold">Synced</span></div><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-3 text-outline text-[18px]">search</span><input class="w-64 pl-9 pr-3 py-1.5 rounded-lg bg-surface-container-lowest font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none shadow-sm" placeholder="Search ballot token, student ID..." type="text"/></div><button aria-label="Notifications" class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary-container"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="relative w-full pt-16 bg-surface px-gutter-lg py-gutter-lg min-h-screen"><div class="flex flex-col w-full">
+<!-- Top Headline & Action Toolbar -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-lg">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm tracking-wide uppercase">
+          Opisyal na Konsola
+        </span>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-tertiary">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-ping"></span>
+          Konektado sa Mainnet
+        </span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight font-extrabold">Dashboard</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        Pangkalahatang-ideya ng Halalan • <span class="font-semibold text-on-surface">SSLG General Election 2026 (Kasalukuyan)</span>
+</p>
+</div>
+<!-- Quick Administrative Controls -->
+<div class="flex items-center gap-space-sm self-start md:self-auto shrink-0">
+<button class="flex items-center gap-space-xs px-3.5 py-2 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all shadow-sm group" id="refreshBtn">
+<span class="material-symbols-outlined text-[18px] group-hover:rotate-180 transition-transform duration-500">autorenew</span>
+<span class="font-label-md text-label-md">I-refresh ang Datos</span>
+</button>
+<button class="flex items-center gap-space-xs px-4 py-2 rounded-lg bg-primary-container text-on-primary hover:bg-primary transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+<span class="font-label-md text-label-md font-semibold">I-export ang Ulat</span>
+</button>
+</div>
+</div>
+<!-- Metric Quick Stats (7 Cards Bento Flow) -->
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-space-sm lg:gap-space-md mb-space-lg">
+<!-- 1. Active Students -->
+<div class="flex flex-col justify-between p-space-md bg-surface-container-lowest rounded-xl shadow-sm hover:translate-y-[-2px] transition-all">
+<div class="flex items-center justify-between text-outline">
+<span class="material-symbols-outlined text-[20px] text-primary">group</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-bold">100% ID</span>
+</div>
+<div class="mt-space-sm">
+<span class="font-stat-display text-stat-display font-extrabold text-on-surface block leading-none">4</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface mt-1 block">Active students</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">Rehistradong botante</span>
+</div>
+</div>
+<!-- 2. Voted -->
+<div class="flex flex-col justify-between p-space-md bg-surface-container-lowest rounded-xl shadow-sm hover:translate-y-[-2px] transition-all">
+<div class="flex items-center justify-between text-outline">
+<span class="material-symbols-outlined text-[20px] text-tertiary">how_to_reg</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-on-tertiary-container/30 text-tertiary font-bold">2/4</span>
+</div>
+<div class="mt-space-sm">
+<span class="font-stat-display text-stat-display font-extrabold text-on-surface block leading-none">2</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface mt-1 block">Voted</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">Nakaboto sa sistema</span>
+</div>
+</div>
+<!-- 3. Turnout -->
+<div class="flex flex-col justify-between p-space-md bg-surface-container-lowest rounded-xl shadow-sm hover:translate-y-[-2px] transition-all">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-[20px] text-primary-container">pie_chart</span>
+<!-- Mini Radial SVG -->
+<div class="relative w-5 h-5 flex items-center justify-center">
+<svg class="w-5 h-5 -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-container-high" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="4"></path>
+<path class="text-primary-container" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="50, 100" stroke-linecap="round" stroke-width="4"></path>
+</svg>
+</div>
+</div>
+<div class="mt-space-sm">
+<span class="font-stat-display text-stat-display font-extrabold text-primary-container block leading-none">50%</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface mt-1 block">Turnout</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">Kalahati ng kabuuan</span>
+</div>
+</div>
+<!-- 4. Positions -->
+<div class="flex flex-col justify-between p-space-md bg-surface-container-lowest rounded-xl shadow-sm hover:translate-y-[-2px] transition-all">
+<div class="flex items-center justify-between text-outline">
+<span class="material-symbols-outlined text-[20px] text-secondary">ballot</span>
+<span class="font-label-sm text-label-sm text-outline">Bukás</span>
+</div>
+<div class="mt-space-sm">
+<span class="font-stat-display text-stat-display font-extrabold text-on-surface block leading-none">2</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface mt-1 block">Positions</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">Pres &amp; Vice Pres</span>
+</div>
+</div>
+<!-- 5. Candidates -->
+<div class="flex flex-col justify-between p-space-md bg-surface-container-lowest rounded-xl shadow-sm hover:translate-y-[-2px] transition-all">
+<div class="flex items-center justify-between text-outline">
+<span class="material-symbols-outlined text-[20px] text-secondary">badge</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">2 posisyon</span>
+</div>
+<div class="mt-space-sm">
+<span class="font-stat-display text-stat-display font-extrabold text-on-surface block leading-none">4</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface mt-1 block">Candidates</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">Kabuuang kandidato</span>
+</div>
+</div>
+<!-- 6. Tokens -->
+<div class="flex flex-col justify-between p-space-md bg-surface-container-lowest rounded-xl shadow-sm hover:translate-y-[-2px] transition-all">
+<div class="flex items-center justify-between text-outline">
+<span class="material-symbols-outlined text-[20px] text-primary">key</span>
+<span class="font-label-sm text-label-sm text-tertiary font-bold">100% Synced</span>
+</div>
+<div class="mt-space-sm">
+<span class="font-stat-display text-stat-display font-extrabold text-on-surface block leading-none">4</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface mt-1 block">Tokens</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">Nailabas na token keys</span>
+</div>
+</div>
+<!-- 7. Used Tokens -->
+<div class="flex flex-col justify-between p-space-md bg-surface-container-lowest rounded-xl shadow-sm hover:translate-y-[-2px] transition-all">
+<div class="flex items-center justify-between text-outline">
+<span class="material-symbols-outlined text-[20px] text-on-secondary-container">task_alt</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">50% Rate</span>
+</div>
+<div class="mt-space-sm">
+<span class="font-stat-display text-stat-display font-extrabold text-on-surface block leading-none">2</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface mt-1 block">Used tokens</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">Nagamit sa pagboto</span>
+</div>
+</div>
+</div>
+<!-- Election & Blockchain Live Status Strip -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm mb-space-lg flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-wrap items-center gap-y-2 gap-x-space-lg">
+<!-- Status Item 1: Election Status -->
+<div class="flex items-center gap-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Election status:</span>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container text-tertiary font-label-md text-label-md font-bold">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span>Open</span>
+</div>
+</div>
+<span class="hidden sm:inline text-outline-variant font-light">•</span>
+<!-- Status Item 2: Blockchain Published -->
+<div class="flex items-center gap-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Blockchain:</span>
+<div class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-[16px] text-primary">verified</span>
+<span>Naka-publish</span>
+</div>
+</div>
+<span class="hidden sm:inline text-outline-variant font-light">•</span>
+<!-- Status Item 3: Registered Tokens -->
+<div class="flex items-center gap-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Tokens na naka-register sa blockchain:</span>
+<span class="font-label-md text-label-md font-bold text-on-surface px-2 py-0.5 rounded bg-surface-container-high">4</span>
+</div>
+</div>
+<!-- Secondary Meta (Technical Ledger telemetry) -->
+<div class="flex flex-wrap items-center gap-x-space-md gap-y-1 font-body-sm text-body-sm text-on-surface-variant pt-2 lg:pt-0">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">fingerprint</span>
+<span class="font-mono text-body-sm text-outline">0x74f2...c8a91b3</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+<span>Consensus: <strong class="text-on-surface font-semibold">Active Sync</strong></span>
+</div>
+<span class="text-outline">•</span>
+<span>Huling update: <span class="font-semibold text-on-surface">Kasalukuyan</span></span>
+</div>
+</div>
+<!-- Admin Controls & Live Results Panel -->
+<div class="flex flex-col bg-surface-container-lowest rounded-2xl shadow-sm p-space-lg mb-space-lg">
+<!-- Header Filter Controls Row -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md pb-space-lg">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm tracking-wider uppercase text-primary font-bold">ADMIN REPORT</span>
+<span class="text-outline">•</span>
+<span class="font-label-sm text-label-sm text-tertiary font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+            Real-time consensus
+          </span>
+</div>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">Mga resulta mula sa blockchain</h2>
+</div>
+<!-- Filters Matching Screenshot -->
+<div class="flex flex-wrap items-center gap-space-md">
+<!-- Election Dropdown -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold" for="electionSelect">Election</label>
+<div class="relative">
+<select class="appearance-none bg-surface font-label-md text-label-md text-on-surface font-medium pl-3 pr-8 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer" id="electionSelect">
+<option value="sslg2026">SSLG Election 2026 (kasalukuyan)</option>
+<option value="sslg2025">SSLG Election 2025 (naka-archive)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-outline text-[18px]">expand_more</span>
+</div>
+</div>
+<!-- Position Dropdown -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold" for="positionSelect">Position</label>
+<div class="relative">
+<select class="appearance-none bg-surface font-label-md text-label-md text-on-surface font-medium pl-3 pr-8 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer" id="positionSelect">
+<option value="all">Lahat ng position</option>
+<option value="pres">President lamang</option>
+<option value="vpres">Vice President lamang</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-outline text-[18px]">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Candidate Race Stack -->
+<div class="flex flex-col gap-space-xl pt-space-md">
+<!-- RACE 1: PRESIDENT -->
+<div class="flex flex-col p-space-lg bg-surface rounded-xl shadow-sm">
+<!-- Race Category Title Header -->
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-sm">
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface">President</h3>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-semibold">
+              2 boto
+            </span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-outline font-label-sm text-label-sm">
+              1 Posisyon
+            </span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-tertiary">check_circle</span>
+<span class="font-semibold text-on-surface">100% ng posisyon nabotohan</span>
+</div>
+</div>
+<!-- Candidate Rows -->
+<div class="flex flex-col gap-space-lg">
+<!-- Candidate 1: Juan Santos Dela Cruz (Leading / Winner) -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<!-- Avatar Indicator -->
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-md text-label-md font-bold">
+                  JS
+                </div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-bold text-on-surface">Juan Santos Dela Cruz</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-on-tertiary-container/30 text-tertiary font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[13px]">trending_up</span>
+                    Nangunguna (Leading)
+                  </span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-stat-display text-[22px] font-extrabold text-on-surface">2</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">boto (100%)</span>
+</div>
+</div>
+<!-- Tally Progress Track -->
+<div class="w-full bg-surface-container-high rounded-full h-3.5 p-0.5 overflow-hidden flex items-center">
+<div class="bg-primary-container h-full rounded-full transition-all duration-1000 ease-out shadow-sm" style="width: 100%"></div>
+</div>
+</div>
+<!-- Candidate 2: Maria Lopez Reyes (0 votes) -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center font-label-md text-label-md font-bold">
+                  ML
+                </div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-medium text-on-surface">Maria Lopez Reyes</span>
+<span class="font-label-sm text-label-sm text-outline px-1.5 py-0.5 rounded bg-surface-container">Kandidato</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-stat-display text-[22px] font-extrabold text-outline">0</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">boto (0%)</span>
+</div>
+</div>
+<!-- Tally Progress Track -->
+<div class="w-full bg-surface-container-high rounded-full h-3.5 p-0.5 overflow-hidden flex items-center">
+<div class="bg-outline-variant h-full rounded-full transition-all duration-1000 ease-out" style="width: 0%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- RACE 2: VICE PRESIDENT -->
+<div class="flex flex-col p-space-lg bg-surface rounded-xl shadow-sm">
+<!-- Race Category Title Header -->
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-sm">
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface">Vice President</h3>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-semibold">
+              2 boto
+            </span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-outline font-label-sm text-label-sm">
+              1 Posisyon
+            </span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">balance</span>
+<span class="font-semibold text-on-surface">Tabla ang boto</span>
+</div>
+</div>
+<!-- Candidate Rows -->
+<div class="flex flex-col gap-space-lg">
+<!-- Candidate 1: Ana Cruz Garcia -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-primary-container/20 text-primary flex items-center justify-center font-label-md text-label-md font-bold">
+                  AC
+                </div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-bold text-on-surface">Ana Cruz Garcia</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[12px]">drag_handle</span>
+                    Tabla (50%)
+                  </span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-stat-display text-[22px] font-extrabold text-on-surface">1</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">boto (50%)</span>
+</div>
+</div>
+<!-- Tally Progress Track -->
+<div class="w-full bg-surface-container-high rounded-full h-3.5 p-0.5 overflow-hidden flex items-center">
+<div class="bg-primary-container h-full rounded-full transition-all duration-1000 ease-out shadow-sm" style="width: 50%"></div>
+</div>
+</div>
+<!-- Candidate 2: Pedro Santos -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-primary-container/20 text-primary flex items-center justify-center font-label-md text-label-md font-bold">
+                  PS
+                </div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-bold text-on-surface">Pedro Santos</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[12px]">drag_handle</span>
+                    Tabla (50%)
+                  </span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-stat-display text-[22px] font-extrabold text-on-surface">1</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">boto (50%)</span>
+</div>
+</div>
+<!-- Tally Progress Track -->
+<div class="w-full bg-surface-container-high rounded-full h-3.5 p-0.5 overflow-hidden flex items-center">
+<div class="bg-primary-container h-full rounded-full transition-all duration-1000 ease-out shadow-sm" style="width: 50%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Cryptographic Ledger Quick Verification Strip -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-md p-space-md bg-surface-container-high/60 rounded-xl">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center text-primary shadow-sm shrink-0">
+<span class="material-symbols-outlined text-[24px]">enhanced_encryption</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-bold text-on-surface">Tamper-Proof Ledger Seal</span>
+<span class="px-1.5 py-0.2 rounded bg-tertiary/15 text-tertiary font-label-sm text-label-sm font-bold">Immuntable</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+          Lahat ng 2 boto ay na-verify gamit ang SHA-256 cryptographic signatures sa pampublikong ledger ng ANHS.
+        </span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm w-full sm:w-auto justify-end">
+<a class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-surface-container-lowest text-primary hover:bg-primary hover:text-on-primary font-label-md text-label-md font-semibold transition-all shadow-sm" href="#">
+<span>I-verify sa Public Ledger Explorer</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<script>
+  // Simple micro-interaction for refresh button
+  document.getElementById('refreshBtn')?.addEventListener('click', function() {
+    const btn = this;
+    const originalText = btn.innerHTML;
+    btn.innerHTML = `
+      <span class="material-symbols-outlined text-[18px] animate-spin text-primary">progress_activity</span>
+      <span class="font-label-md text-label-md text-primary font-semibold">Nag-si-sync...</span>
+    `;
+    setTimeout(() => {
+      btn.innerHTML = originalText;
+    }, 900);
+  });
+</script></main></div></body></html>
